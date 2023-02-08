@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>A Particular Equillibrium</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Normally Sampled Normal Lead to A Dirac Delta Distribution? Part 1" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Ad Infinitum</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/maths.html">Maths</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/a-particular-equillibrium.html" rel="bookmark"
+           title="Permalink to A Particular Equillibrium">A Particular Equillibrium</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-07-02T19:39:00+02:00">
+                Published: Sun 02 July 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/algon.html">Algon</a>
+        </address>
+<p>In <a href="/category/maths.html">Maths</a>.</p>
+
+</footer><!-- /.post-info -->      <p>I had a dumb idea while I was looking at how to model SGD with a SDE. If you randomly initliaze matrix weights according to some Gaussian, </p>
+<div class="math">$$\theta ~ \mathcal N (0, I)$$</div>
+<p>, where I is an identity matrix, then the first gradient updates should  be normally distributed to, at least for <span class="math">\(L_2\)</span> loss.</p>
+<p>So what if that kept happening? Like, you sample from one normal distribution to form another normal distribution. And so on. This is plausibly something which can occur, like difference equations with I.I.D. brownian noise. Though the exact form I'm thinking of is kind of dumb. </p>
+<p>Suppose you have a sequence of random variables. We define</p>
+<div class="math">\begin{align}
+\forall n \in \mathbb N n &amp;= 0  \rightarrow \sigma_n \sim \mathcal N (0,1)\\
+\forall n \in \mathbb N n+1 \! &amp;= 0 \rightarrow \sigma_(n+1) \sim \mathcal N(0, \sigma_n)
+\end{align}</div>
+<p>Though really, <span class="math">\(\sigma_i\)</span> will be sampled from a half-Gaussian. But I don't want to write that out, so whatever.</p>
+<p>How does a sequence of jumps evolve? Well, intuitively there is a ~2/3 chance of <span class="math">\(\sigma_{n+1}\)</span> being smaller than <span class="math">\(\sigma_n\)</span>. If this occurs infinitely many times, we might think the "event" of the variance growing smaller will occur infinitely many times. So if you're doing the obvious thing if you're not a mathematician and ask "what's the stationary distribution", you might suspect we'll get a Dirac Delta. </p>
+<p>Yet the "event" of the variance growing larger must also occur infinitely many times in any sequence. So, sadly, we need more than infinitely many shrinks to solve our problem. Well, let's just do a quick numerical check that eq. 1 leads to an infinitely shrinking sequence. </p>
+<p>Running a bit of code, we get a sequence like 
+1. 0.06619689276821521, 
+2. -0.004180368466071496, 
+3. -3.632035781799425e-06, 
+4. -1.780514134591378e-11, 
+5. -3.809091727146634e-22, 
+6. -3.858858262617346e-44, 
+7. 1.3234421571769518e-87, 
+8. 7.107311345616059e-175, 
+9. 0.0, 
+10. 0.0</p>
+<p>So it looks like we're on the right track. </p>
+<p>What now? Well, since we're interested in growth, we might reasonably ask what <span class="math">\(E[\sigma_{n+1}/\sigma_n| \sigma_n]\)</span> is. A quick calculation shows 
+\begin{align}
+E[\sigma_{n+1}/\sigma_n| \sigma_n] &amp;= \int \sqrt{\frac{2}{\pi \sigma_n^2}} exp(-\frac{x^2}{2 \sigma_n^2}) dx
+E[\sigma_{n+1}/\sigma_n| \sigma_n] &amp;= \sqrt{\frac{2}{\pi}}
+\end{gather}</p>
+<p>So in expectation, <span class="math">\(\sigma_{n+1}\)</span> is smaller than <span class="math">\(\sigma_n\)</span>. What do we do for <span class="math">\(E[\sigma_{n+2}/\sigma_n| \sigma_n]\)</span>? Well, we have
+</p>
+<div class="math">\begin{equation}
+E[\sigma_{n+2}/\sigma_n| \sigma_n] =E[\sigma_{n+2}/\sigma_{n+1} \sigma_{n+1}/\sigma_n| \sigma_n] &amp;=
+\end{equation}</div>
+<p>
+If we could somehow break that product of factors of successive <span class="math">\(\sigma_i\)</span> into a sum, then we'd be closer to re-using eq. 2. Luckily, the arithmetic-geometric mean inequality, 
+</p>
+<div class="math">\begin{equation}
+\Pi_i a_i \leq (\frac{\Sigma_i a_i}{n})^n,
+end{equation}
+and Jensen's inequality, 
+\begin{equation}</div>
+<p>
+\text{If }f: \mathbb R \rightarrow \mathbb R \text{ is a convex function} \rightarrow  f(E[X]) \leq E[f(X)],
+\end{equation}
+will let us do that. </p>
+<div class="math">\begin{gather}
+T\land (4) \bot E[\sigma_{n+2}/\sigma_{n+1} \sigma_{n+1}/\sigma_n| \sigma_n] \leq E[ \frac{1}{4} \big{(} (\frac{\sigma_{n+2}}{\sigma_{n+1}})^2 + (\frac{\sigma_{n+1}}{\sigma_{n}})^2 + 2 \frac{\sigma_{n+2}}{\sigma_n} \big{)} |\sigma_n]\\
+T \bot E[\sigma_{n+2}/\sigma_{n+1} \sigma_{n+1}/\sigma_n| \sigma_n] \leq \frac{1}{2} E[ \big{(} (\frac{\sigma_{n+2}}{\sigma_{n+1}})^2 + (\frac{\sigma_{n+1}}{\sigma_{n}})^2\big{)}|\sigma_n]
+T\land (5) E[\sigma_{n+2}/\sigma_{n+1} \sigma_{n+1}/\sigma_n| \sigma_n] \leq \frac{1}{2} \big{(}   (\frac{E[\sigma_{n+2}|\sigma_n]}{\sigma_{n+1}})^2  + (\frac{E[\sigma_{n+1}|\sigma_n]^2}{\sigma_{n}}) \big{)}
+T\land (3) E[\sigma_{n+2}\sigma_n| \sigma_n] \leq \frac{1}{\sqrt{2 \pi}}
+\end{gather}</div>
+<p>~~It seems pretty likely~~ Generalizing the above arguement to show 
+</p>
+<div class="math">\begin{equation}
+E[\frac{\sigma_n}{\sigma_{n-m}}|\sigma_{n-m}]\leq \frac{1}{\sqrt{\pi}}
+\end{equation}</div>
+<p> 
+is left as an exercise to the reader. </p>
+<p>Eq. 7 implies our sequence is bounded above almost surely. Moreover, if there is some kind of limiting distibution for <span class="math">\(\sigma_n\)</span> as <span class="math">\(n\rightarrow \infty\)</span>, it would have to have mean 0. But since we've restricted <span class="math">\(\sigma\)</span> to be in <span class="math">\(\[ 0, \infty )\)</span>, it would have to have zero measure over the positive reals. </p>
+<p>That doesn't imply, though, that the operator <span class="math">\(K[f] = \int \frac{\sqrt{2}}{\pi \sigma^2} exp(-frac{x^2}{2 \sigma^2}) f(x) dx\)</span> doesn't have a fixed point. Or that it does. Only that, if this equillibrium is the limit of some jump process, it must be a dirac delta.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
