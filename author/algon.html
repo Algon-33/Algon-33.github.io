@@ -44,7 +44,7 @@
 \end{align*}</div>
 <p>Though really, <span class="math">\(\sigma_i\)</span> will be sampled from a half-Gaussian. But I don't want to write that out, so whatever.</p>
 <p>How does a sequence of jumps evolve? Well, intuitively there is a ~2/3 chance of <span class="math">\(\sigma_{n+1}\)</span> being smaller than <span class="math">\(\sigma_n\)</span>. If this occurs infinitely many times, we might think the "event" of the variance growing smaller will occur infinitely many times. So if you're doing the obvious thing if you're not a mathematician and ask "what's the stationary distribution", you might suspect we'll get a Dirac Delta. </p>
-<p>Yet the "event" of the variance growing larger must also occur infinitely many times in any sequence. So, sadly, we need more than infinitely many shrinks to solve our problem. Well, let's just do a quick numerical check that eq. 1<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> leads to an infinitely shrinking sequence. </p>
+<p>Yet the "event" of the variance growing larger must also occur infinitely many times in any sequence. So, sadly, we need more than infinitely many shrinks to solve our problem. Well, let's just do a quick numerical check that eq. 1 leads to an infinitely shrinking sequence. </p>
 <p>Running a bit of code, we get a sequence like 
 +   0.06619689276821521, 
 +   -0.004180368466071496, 
@@ -81,7 +81,7 @@ and Jensen's inequality,
 f: \mathbb R \rightarrow \mathbb R \text{ is a convex function} \rightarrow  f(E[X]) \leq E[f(X)],\tag{7}
 \end{equation*}</div>
 <p>
-will let us do that<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.
+will let us do that<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
 </p>
 <div class="math">\begin{align*} 
 &amp; (5)\land (6) \vdash E[\sigma_{n+2}/\sigma_n| \sigma_n] \leq E[ \frac{1}{4} \big{(} (\frac{\sigma_{n+2}}{\sigma_{n+1}})^2 + (\frac{\sigma_{n+1}}{\sigma_{n}})^2 + 2 \frac{\sigma_{n+2}}{\sigma_n} \big{)} |\sigma_n]\tag{8}\\
@@ -108,10 +108,7 @@ Or that it does. Only that, if this equilibrium is the limit of some jump proces
 <hr>
 <ol>
 <li id="fn:1">
-<p>Just pretend the equations are numbered.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>Don't worry about the <span class="math">\(\vdash\)</span>. It just means whatever mathematical theory we're working in, plus some assumed equations, can deduce the statement to the right.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>Don't worry about the <span class="math">\(\vdash\)</span>. It just means whatever mathematical theory we're working in, plus some assumed equations, can deduce the statement to the right.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
