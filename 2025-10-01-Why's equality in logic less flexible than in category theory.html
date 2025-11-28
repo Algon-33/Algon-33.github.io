@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Why's equality in logic less flexible than in category theory?</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h1>Why's equality in logic less flexible than in category theory?</h1>
+      <p><em>Published on 2025-10-01</em></p>
+      <p>Whilst cycling today, I remembered that when reading Mark Kac's autobiography, Enigmas of Change, which is truly fantastic, his search for the meaning of probabilistic independence struck me as <em>massive</em>. What would it even mean to understand independence at a deep level? It's just P(A,B) = P(A)P(B), surely? The biography didn't truly answer that question for me, but it did gesture at what a deeper understanding might look like.</p>
+<p>Which then reminded me that there was a famous analysis of the definition of <em>equality</em> in mathematics. So I figured, now's as good a time as any to get deeply confused about the most basic concept in mathematics. And I succeeded. </p>
+<p>First off, a brush-up with equality. What's the standard definition? Well, it's a binary, reflexive, symmetric and transitive relationship. Or, at least, that's what an equivalence relation is. You can get a trivial equivalence relationship: everything's equivalent to everything else. Not selective enough to define equality. </p>
+<p>OK, maybe if we look at some other definitions of equality we can get a grip on it? In set theory, you say that two sets are equal if they've got the same elements. How do you know the elements are the same i.e. equal? You just know. </p>
+<p>Maybe that comes from first order logic? How's equality defined there? Same as above, <em>except</em> there's for two big old schemas of properties it satisfies. First, if \(x=y \rightarrow f(...,x,...) = f(..., y,...)\)</p>
+<p>for any function f we can cook up in our logic's syntax. Second, </p>
+<p>\(x=y \rightarrow \phi(...,x,...) \rightarrow (\phi (..., y,...))\)</p>
+<p>for any property \(\phi\) we can cook up in our logic's syntax. </p>
+<p>In other words, if \(x=y\), then they can substitute for one another in anything we do to them. </p>
+<p>Which is a heck of a lot more oomph than just saying equality is an equivalence relation. But now I'm less confused. I've undone all my hard work. I'll have to look at more definitions to remedy the situation. </p>
+<p>OK, what about in category theory? There, the notion of equality depends on context. (And in type theory.) For in a category (objects plus maps between them) two objects are equal iff there is an isomorphism between them. That is, \(X=Y\) implies there is some \(g:X-&gt;Y\) with a corresponding inverse s.t. </p>
+<p>\(g^{-1}  \circ g = Id_X, \quad g \circ g^{-1} = Id_Y.\)</p>
+<p>Let me give an example. Take a category of shapes, but with only continuous functions between them. Then, a sphere and a cube are isomorphic to one another, i.e. they are equal. Wait, what?</p>
+<p>Yes, a cube and a sphere are equal to one another <em>if</em> you only have continuous maps available to you. For the purposes of continuous maps, the distances between things don't matter, only topology. And a cube and a sphere have the same topology.</p>
+<p>But if you enrich the category with some more discriminating maps, say distance preserving ones, then the sphere and cube are no longer equal. Conversely, if you reduce the category by removing all the isomorphisms between the sphere and the cube, then they are no longer equal. </p>
+<p>This is what I meant by equality being contextual in category theory. Two objects may or may not be equal, depending on the category they're in. You can go to a "bigger" category and make two objects unequal. Or you can go to a smaller category and make them unequal.</p>
+<p>But that doesn't make sense. In a theory in first order logic, whether two things are equal or not <em>also</em> depends on the context i.e. the axioms of the and theory you're working with. For instance, are the symbols "1" = "2" in first order logic? Depends on the axioms! You may not be able to prove it either way if the axioms are weak enough. Which is certainly the case if your theory has no axioms, except for the logical axioms assumed by the logic itself. </p>
+<p>If you add some axioms and strengthen the theory, then you could get equality or inequality. But once you have it, adding axioms can't change whether two things are equal or not. At least, not without running into contradictions?  </p>
+<p>So what gives? Why is equality in category theory more "flexible" than of first order logic? And have I remystified equality for myself?</p>
+<p>In both cases, equality is reflexive, symmetric, transitive and binary. In both cases, if two objects are equal, then you can substitute them for one another in any operation and wind up with equivalent results. </p>
+<p>Is it just that you can have <em>many</em> different equalities between objects in category theory? Is it some weird feature of the semantics of the theory? My current guess is that the equivalent of the axiom schemas for equality from FOL in category theory are all the statements like \(g^{-1}  \circ g = Id_X, \quad g \circ g^{-1} = Id_Y\). We can add/remove any of these conditions (except when \(g:X-&gt;X = Id_X\)) from the category. But we can't do the same for the axiom schemas in FOL. And that's why they're more rigid. </p>
+<p>So confusion dissolved? Well, at least until I tackle equality in programming.</p>
+      <hr>
+      <p><a href="index.html">← Back to all posts</a></p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Liouville's Theorem and the Second Law</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h1>Liouville's Theorem and the Second Law</h1>
+      <p><em>Published on 2025-11-09</em></p>
+      <h3>Proof</h3>
+<p>Liouville's theorem says that if you've got a set of possible states of a physical system, a "volume" in "phase space" which you might take to represent uncertainty, then that volume doesn't change as the system evolves. This applies to systems that obey conservation of energy. </p>
+<p>Liouville's theorem can be easily proven using the Hamiltonian formulation of classical mechanics, which we can phrase in terms of phase spaces. (Aside: Hamiltonian mechanics generalizes better to quantum mechanics.)</p>
+<p><img alt="" src="https://39669.cdn.cke-cs.com/rQvD3VnunXZu34m86e5f/images/e23ffeefed7bcb78adb0dcf0b387f59a99eb742754bb3d7c.png" /></p>
+<p>Fig 1</p>
+<p>Phase space is just the space of co-ordinates \(q\) and momenta \(p\) of a physical system. If you add on some extra structure, you get dynamics in this space, where each point represents a state of a physical system and a parameterized curve represents how that state evolves over time. </p>
+<p>The core bit of structure you need to add here is the Hamiltonian \(H(p,q)\), which is the energy as a function of position \(q(t)\) and momentum \(p(t)\). \(H\) tells us everything about the state of our physical system, and in fact generates our equations of motion:</p>
+<p>\(\partial H/\partial p = \dot{q},  \partial H/\partial q = -\dot{p} \quad (1)\)</p>
+<p>This isn't anything mysterious: for a single particle in a potential well, we have  </p>
+<p>\(H(p,q) = m/2  p^2 + V(q)\)</p>
+<p>So </p>
+<p>\(\partial H/\partial p  = p/m = \dot q \qquad \partial H /\partial q = -\partial V/\partial q = \dot p\)</p>
+<p>But we won't need anything that specific for Liouville's theorem. The general equations of motion (1) are all we'll need for Liouville's theorem. </p>
+<p>As is usual for physics, start with an infinitesimal volume element, dp dq (fig 1). This can represent the possible states of a physical system. We wish to show this volume is conserved as the states evolve. </p>
+<p>Note that \(dp(t)\) and \(dq(t)\) are the differences in position/momenta along corners of the rectangle. To calculate how they change, we need to see how positions and momenta change. In an infinitesimal time step, by (1),</p>
+<p>\(p (t+dt) = p(t) + \dot p   dt= p(t) - \partial H/\partial q  dt , \quad (2a)\)</p>
+<p>\(q (t+dt) = q(t) + \dot q   dt= q(t) + \partial H/\partial p  dt . \quad (2b)\)</p>
+<p>Using 2a and 2b, we can show that</p>
+<p>\(\)\(dp(t+dt) = p(t+dt)-p(t) = dp(t) -  \partial^2 H/ \partial q \partial p   dp(t) dt,\)</p>
+<p>\(dq(t+dt) = q(t+dt)-q(t) = dq(t) +  \partial^2 H/ \partial p \partial q   dq(t) dt.\)</p>
+<p>This implies that for all t, </p>
+<p>\(dq(t+dt)dp(t+dt) = dq(t)dp(t) (1+(\partial^2H/\partial p\partial q - \partial^2H/\partial p\partial q)dt )\)</p>
+<p>So for all t</p>
+<p>\(dq(t+dt)dp(t+dt) = dp(t)dq(t).\)</p>
+<p>In words, infinitesimal rectangles in phase space have constant volume. This analysis generalizes to higher dimensions and different shapes. QED.</p>
+<h3>The Second Law</h3>
+<p>You might wonder how Liouville's theorem squares with the second law of thermodynamics, if volumes in phase space are meant to represent uncertainty. One theorem says uncertainty remains constant, one law says it must increase. The answer is that: </p>
+<ol>
+<li>We're using the full description of our physical system in Liouville's theorem, and in the context of thermodynamics we've thrown away almost all the info we have about our system. This grows the size of the phase space we're uncertain over.</li>
+<li>In phase space, our system might evolve into very complex states that require fine-grained knowledge to keep track of. Instead of neat squares, we wind up with fractal, space filling shapes. But the thermodynamic model involves far coarser evolution, resulting in all the little gaps between thin "strands" of our phase space volume getting filled in because we can't keep track of the fine details of where our volume is/isn't.</li>
+</ol>
+<p>So the thermodynamic uncertainty is larger and gets larger. </p>
+<p><img alt="" src="https://39669.cdn.cke-cs.com/rQvD3VnunXZu34m86e5f/images/9ef7a9d86ca8d9ac7abb3bf1c9d558549a15a5875c30e40c.png" /></p>
+<p>How a volume in phase space evolves over time to eventually become too complex to model in fine detail and force us to lossily approximate it, increasing the apparent volume.</p>
+      <hr>
+      <p><a href="index.html">← Back to all posts</a></p>
+    </main>
+  </body>
+</html>

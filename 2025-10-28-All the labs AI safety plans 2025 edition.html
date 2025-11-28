@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>All the labs AI safety plans: 2025 edition</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h1>All the labs AI safety plans: 2025 edition</h1>
+      <p><em>Originally published on <a href="https://aisafety.info/questions/NM58/What-are-the-major-AI-companies'-safety-plans">LessWrong</a> on 2025-10-28</em></p>
+      <p><em>This is a linkpost for</em> <a href="https://aisafety.info/questions/NM58/What-are-the-major-AI-companies'-safety-plans"><em>https://aisafety.info/questions/NM58/What-are-the-major-AI-companies'-safety-plans</em></a></p>
+<p>Three out of three CEOs of top AI companies agree: "<a href="https://safe.ai/work/statement-on-ai-risk">Mitigating the risk of extinction from AI should be a global priority.</a>"</p>
+<p><img alt="" src="https://39669.cdn.cke-cs.com/rQvD3VnunXZu34m86e5f/images/3acc8e96345252cca645a78f71e5d0ca4be0945ac9677911.jpeg" /></p>
+<p>How do they plan to do this?</p>
+<p>Anthropic has a <a href="https://www-cdn.anthropic.com/872c653b2d0501d6ab44cf87f43e1dc4853e4d37.pdf">Responsible Scaling Policy</a>, Google DeepMind has a <a href="https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/updating-the-frontier-safety-framework/Frontier%20Safety%20Framework%202.0.pdf">Frontier Safety Framework</a>, and OpenAI has a <a href="https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf">Preparedness Framework</a>, all of which were updated in 2025. </p>
+<h1>Overview of the policies</h1>
+<p>All three policies have similar “bones”.<sup id="fnref:oiff6zgmbbq"><a class="footnote-ref" href="#fn:oiff6zgmbbq">1</a></sup> They:</p>
+<ul>
+<li>Take the same high-level approach: the company promises to test its AIs for dangerous capabilities during development; if they find that an AI has dangerous capabilities, they'll put safeguards in place to get the risk down to "acceptable levels" before they deploy it.</li>
+<li>Land on basically the same three AI capability areas to track: biosecurity threats, cybersecurity threats, and autonomous AI development.</li>
+<li>Focus on misuse more than misalignment. </li>
+</ul>
+<p>TL;DR summary table for the rest of the article:</p>
+<table>
+<thead>
+<tr>
+<th> </th>
+<th><strong>Anthropic</strong></th>
+<th><strong>Google DeepMind</strong></th>
+<th><strong>OpenAI</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Safety policy document</td>
+<td><a href="https://www-cdn.anthropic.com/872c653b2d0501d6ab44cf87f43e1dc4853e4d37.pdf">Responsible Scaling Policy</a></td>
+<td><a href="https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/updating-the-frontier-safety-framework/Frontier%20Safety%20Framework%202.0.pdf">Frontier Safety Framework</a></td>
+<td><a href="https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf">Preparedness Framework</a></td>
+</tr>
+<tr>
+<td>Monitors for:</td>
+<td>Capability Thresholds</td>
+<td>Critical Capability Levels (CCLs)</td>
+<td>High/Critical risk capabilities in Tracked Categories</td>
+</tr>
+<tr>
+<td>…in these key areas:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CBRN<sup id="fnref:7yefbxd5g9g"><a class="footnote-ref" href="#fn:7yefbxd5g9g">2</a></sup> misuse/weapons</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Biological/chemical misuse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Autonomous AI R&amp;D</p>
+<p>|
+| Cyber operations ("may" require stronger than ASL-2) | Cybersecurity |
+| …and also these lower-priority areas: | Persuasion<sup id="fnref:o1an7w12csi"><a class="footnote-ref" href="#fn:o1an7w12csi">3</a></sup> | Deceptive alignment (focused on detecting instrumental reasoning) | Sandbagging, autonomous replication, long-range autonomy |
+| Monitoring consists of… | </p>
+<p><strong>Preliminary assessment</strong> that flags models that either 1) are 4x more "performant on automated tests<sup id="fnref:2gu4tol8ebf"><a class="footnote-ref" href="#fn:2gu4tol8ebf">4</a></sup>" or 2) have accumulated &gt;6 months<sup id="fnref:tlsj65725i"><a class="footnote-ref" href="#fn:tlsj65725i">5</a></sup> of fine-tuning/other "capability elicitation methods".</p>
+<p><strong>Comprehensive assessment</strong> that includes threat model mapping, empirical evaluations, elicitation, and forecasting</p>
+<p>| </p>
+<p><strong>Early warning evaluations</strong> with predefined <strong>alert thresholds</strong></p>
+<p><strong>External red-teaming</strong></p>
+<p>| </p>
+<p><strong>Scalable evaluations</strong> (automated proxy tests)</p>
+<p><strong>Deep dives</strong> (e.g., red-teaming, expert consultation)</p>
+<p>|
+| Response to identified risk: | </p>
+<p>Models crossing thresholds must meet <strong>ASL-3 or ASL-4</strong> safeguards</p>
+<p>Anthropic can delay deployment or limit further training</p>
+<p>Write a <strong>Capability Report</strong> and get signoff from CEO, Responsible Scaling Officer, and Board</p>
+<p>| </p>
+<p><strong>Response Plan</strong> formulated if model hits an alert threshold</p>
+<p>The plan involves applying the predetermined mitigation measures</p>
+<p>If mitigation measures seem insufficient, the plan may involve pausing deployment or development</p>
+<p>General deployment only allowed if a <strong>safety case</strong> is approved by a governance body</p>
+<p>| </p>
+<p><strong>High-risk models</strong> can only be deployed with sufficient safeguards</p>
+<p><strong>Critical-risk models</strong> trigger a pause in development</p>
+<p>|
+| Safeguards against misuse  | Threat modeling, defense in depth, red-teaming, rapid remediation, monitoring, share only with trusted users | Threat modeling, monitoring/misuse detection | Robustness, usage monitoring, trust-based access |
+| Safeguards against misalignment  | </p>
+<p>"Develop an affirmative case‬ that (1) identifies the most immediate and‬ relevant risks from models pursuing misaligned goals and (2) explains how we have‬ mitigated these risks to acceptable levels."</p>
+<p>| Safety fine-tuning, chain-of-thought monitoring, "future work" | </p>
+<p>Value alignment</p>
+<p>Instruction alignment</p>
+<p>Robust system oversight</p>
+<p>Architectural containment</p>
+<p>|
+| Safeguards on security | </p>
+<p>Access controls</p>
+<p>Lifecycle security</p>
+<p>Monitoring</p>
+<p>| RAND-based security controls, exfiltration prevention | </p>
+<p>Layered security architecture</p>
+<p>Zero trust principles</p>
+<p>Access management</p>
+<p>|
+| Governance structures | </p>
+<p><strong>Responsible Scaling Officer</strong></p>
+<p>External expert feedback required</p>
+<p>Escalation to <strong>Board and Long-Term Benefit Trust</strong> for high-risk cases</p>
+<p>| </p>
+<p>"When alert thresholds are reached, the response plan will be reviewed and approved</p>
+<p>by appropriate corporate governance bodies such as the Google DeepMind AGI Safety Council, Google</p>
+<p>DeepMind Responsibility and Safety Council, and/or Google Trust &amp; Compliance Council."</p>
+<p>| </p>
+<table style="border-style:none"><tbody><tr><td style="padding:5pt;vertical-align:top">Safety Advisory Group (SAG) evaluates models; reports to OpenAI leadership and the Board's Safety &amp; Security Committee</td></tr></tbody></table>
+
+<p>|</p>
+<p>Let’s unpack that table and look at the individual companies’ plans.</p>
+<h1>Anthropic</h1>
+<p>Anthropic’s <a href="https://www-cdn.anthropic.com/872c653b2d0501d6ab44cf87f43e1dc4853e4d37.pdf">Responsible Scaling Policy</a> (updated May 2025) is “[their] public commitment not to train or‬ deploy models capable of causing catastrophic harm unless [they] have implemented safety and security‬ measures that will keep risks below acceptable levels.”</p>
+<h2>What capabilities are they monitoring for?</h2>
+<p>For Anthropic, a <strong>Capability Threshold</strong> is a capability level an AI could surpass that makes it dangerous enough to require stronger safeguards. The strength of the required safeguards is expressed in terms of <a href="https://www.anthropic.com/news/anthropics-responsible-scaling-policy">AI Safety Levels</a> (ASLs). An <a href="https://www.anthropic.com/news/anthropics-responsible-scaling-policy">earlier blog post</a> summarized the ASLs in terms of the model capabilities that would require each ASL:</p>
+<ul>
+<li>ASL-1 is for: “Systems which pose no meaningful catastrophic risk (for example, a 2018 LLM or an AI system that only plays chess).”</li>
+<li>ASL-2 is for: “Systems that show early signs of dangerous capabilities – for example, the ability to give instructions on how to build bioweapons – but where the information is not yet useful due to insufficient reliability or not providing information that e.g. a search engine couldn’t.”</li>
+<li>ASL-3 is for: “Systems that substantially increase the risk of catastrophic misuse compared to non-AI baselines (e.g. search engines or textbooks) OR that show low-level autonomous capabilities.”</li>
+<li>ASL-4 is not fully defined, though capability thresholds for AI R&amp;D and CRBN risks have been defined. Thresholds for these risks involve the abilities to dramatically accelerate the rate of effective scaling, and to uplift CBRN development capabilities.</li>
+<li>ASL-5 is not yet defined.</li>
+</ul>
+<p>As of September 2025, the most powerful model (Opus 4.1) is classed as requiring ASL-3 safeguards.</p>
+<p>Anthropic specifies Capability Thresholds in two areas and is still thinking about a third:</p>
+<ul>
+<li><strong>Autonomous AI R&amp;D (AI Self-improvement)</strong><ul>
+<li><strong>AI R&amp;D-4: The model can fully automate the work of an entry-level researcher at Anthropic.</strong></li>
+<li><strong>AI R&amp;D-5: The model could cause a dramatic acceleration in AI development (e.g., recursive self-improvement).</strong></li>
+</ul>
+</li>
+</ul>
+<p>AI R&amp;D-4 requires ASL-3 safeguards, AI R&amp;D-5 requires ASL-4. Moreover, either threshold would require Anthropic to write an “affirmative case” explaining why the model doesn’t pose unacceptable misalignment risk.</p>
+<ul>
+<li><strong>Chemical, Biological, Radiological, and Nuclear (CBRN):</strong><ul>
+<li>CBRN-3: The model can significantly help people with basic STEM backgrounds create and deploy CBRN weapons.</li>
+<li>CBRN-4: The model can uplift the capabilities of state-level actors, e.g., enabling novel weapons design or substantially accelerating CBRN programs.</li>
+</ul>
+</li>
+</ul>
+<p>CBRN-3 requires ASL-3 safeguards. CBRN-4 would require ASL-4 safeguards (which aren't yet defined; Anthropic <a href="https://www-cdn.anthropic.com/872c653b2d0501d6ab44cf87f43e1dc4853e4d37.pdf/page=8#page=8&amp;zoom=auto,-77,638">has stated</a> they will provide more information in a future update).</p>
+<ul>
+<li><strong>Cyber Operations (provisional). Anthropic is still deciding how to treat this one. The current policy says they’ll engage with cyber experts and may implement tiered access controls or phase deployments based on capability evaluations.</strong></li>
+</ul>
+<p>Anthropic also lists capabilities that may require future thresholds yet-to-be-defined, such as persuasive AI, autonomous replication, and deception.</p>
+<p>If it can’t be proved that a model is sufficiently far below a threshold, Anthropic treats it <em>as if it’s above</em> the threshold. (<a href="https://www.anthropic.com/news/activating-asl3-protections">This in fact happened</a> with Claude Opus 4, the first model Anthropic released with ASL-3 safety measures.)</p>
+<h2>How do they monitor these capabilities?</h2>
+<p>Anthropic routinely does <strong>Preliminary Assessments </strong>to check whether a model is “notably more capable” than previous ones, meaning either:</p>
+<ol>
+<li>The model performs 4× better (in terms of effective compute scaling) on risk-relevant benchmarks, or</li>
+<li>At least six months’ worth of fine-tuning or other <a href="https://docs.google.com/document/d/1Qn1sLAPVW-98zI4LzmNBbrCDqtfP3Nr7iF6_ZPxDc4Q/edit">elicitation improvements</a> have accumulated.</li>
+</ol>
+<p>If either of these are true, or if the Responsible Scaling Officer thinks it’s warranted, a <strong>Comprehensive Assessment</strong> is triggered. This includes:</p>
+<ul>
+<li><strong>Threat model mapping:</strong> Formal analysis of who could use the model, how, and to what effect.</li>
+<li><strong>Empirical evaluations:</strong> Concrete tests showing whether the model can do risky things.</li>
+<li><strong>Elicitation attempts:</strong> Tests to see whether capable users (e.g., red teamers) can get the model to perform harmful tasks, even with prompting, scaffolding, or basic fine-tuning.</li>
+<li><strong>Forecasting:</strong> Informal predictions about whether the model is likely to cross a threshold before the next round of testing.</li>
+</ul>
+<p>Anthropic explicitly tests “safety-off” variants of the model, to see what it’s capable of without harmlessness training or refusal penalties, on the assumption that a bad actor could bypass those safety features (e.g., via stealing model weights and fine-tuning them).</p>
+<h2>What will they do if an AI looks dangerous?</h2>
+<p>Each Capability Threshold is paired with a set of <strong>Required Safeguards </strong>that must be in place before a model that crosses that threshold is trained further or deployed. These fall into two categories:</p>
+<p><strong>Deployment Safeguards </strong>(for ASL-3) are aimed to make sure no one can misuse the deployed model:</p>
+<ul>
+<li><strong>Threat modeling</strong> of how an adversary could catastrophically misuse the system.</li>
+<li><strong>"Defense in depth"</strong> as an approach to catching misuse attempts.</li>
+<li><strong>Red-teaming</strong> to demonstrate that bad actors are highly unlikely to be able to use the system to cause catastrophic harm.</li>
+<li><strong>Rapid remediation</strong>, i.e., demonstration that compromises of the system will be identified and remediated quickly enough to prevent catastrophic harm.</li>
+<li>Ongoing <strong>monitoring</strong>.</li>
+</ul>
+<p><strong>Security Safeguards</strong> (for ASL-3) are aimed to prevent the model weights from being stolen and misused:</p>
+<ul>
+<li><strong>Threat Modelling</strong> of how an adversary could seize control of the model weights.</li>
+<li><strong>Security frameworks</strong> based on industry standards, such as:<ul>
+<li><strong>Perimeters and access controls around sensitive assets.</strong></li>
+<li><strong>Lifecycle security</strong> to prevent compromised components from being introduced.</li>
+<li><strong>Monitoring</strong>, and mitigating, threats proactively.</li>
+<li><strong>Resourcing</strong> security efforts, with an expected 5-10% of employees dedicated to security and adjacent work.</li>
+<li><strong>Following existing guidance</strong> on securing model weights where appropriate.</li>
+</ul>
+</li>
+<li><strong>Audits</strong> of the security program, with independent validation and conducted regularly.</li>
+<li><strong>Third-Party Environments:</strong> “Document how all relevant models will meet the criteria above, even if they are deployed in a third-party partner’s environment that may have a different set of safeguards.”</li>
+</ul>
+<p>For a model to qualify as ASL-3 safe, the deployment protections must be “robust to persistent attempts to misuse the capability,” and the security must be “highly protected against non-state attackers attempting to steal model weights.”</p>
+<p>Once ASL-3 safeguards are in place, Anthropic would conduct a follow-up capability assessment to make sure ASL-4 isn’t needed. Anthropic hasn't defined what ASL-4 safeguards are.</p>
+<h2>Deployment Constraints</h2>
+<p>Models that aren't sufficiently-below-the-threshold can only be deployed if:</p>
+<ul>
+<li>ASL-3 (or higher) safeguards are in place</li>
+<li>A Safeguards Report has been written</li>
+<li>The CEO and Responsible Scaling Officer approve deployment</li>
+<li>Anthropic’s Board and Long-Term Benefit Trust are notified</li>
+</ul>
+<p>If the safeguards can’t be implemented right away, the company is supposed to delay deployment and reduce interim risk as best it can until the protections are ready.</p>
+<h1>Google DeepMind</h1>
+<p>Google DeepMind’s <a href="https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/updating-the-frontier-safety-framework/Frontier%20Safety%20Framework%202.0.pdf">Frontier Safety Framework</a> (FSF) (last updated February 2025) is its protocol for addressing severe risks from advanced AI models. It's mostly about misuse risks (e.g., cyberattacks, bioweapons) that could cause massive harm, but the February version also adds a section on "deceptive alignment" risk, which Google defines as "the risk that AI systems purposefully undermine human control over AI systems."<sup id="fnref:zc1u9kkwni"><a class="footnote-ref" href="#fn:zc1u9kkwni">6</a></sup></p>
+<h3>What capabilities are they monitoring for?</h3>
+<p>The FSF monitors Critical Capability Levels (CCLs): capability thresholds that, if crossed, mean a model could cause severe harm in the absence of additional mitigations. DeepMind looks at risks from "uplift" (an AI makes it easier for a person to do a bad thing) and "autonomy" (the AI can do the bad thing all on its own).</p>
+<p><strong>Misuse CCLs</strong> are capabilities that could make the model helpful to a person trying to cause large-scale harm:</p>
+<ul>
+<li>CBRN (Chemical, Biological, Radiological, and Nuclear)<ul>
+<li><sup id="fnref:9hokk1hhgh7"><a class="footnote-ref" href="#fn:9hokk1hhgh7">7</a></sup>Uplift: Helping low-resourced actors create a mass-casualty biological weapon.</li>
+</ul>
+</li>
+<li>Cyber<ul>
+<li>Uplift: Major help (cost/resource reduction of &gt;10x) with high-impact cyberattacks</li>
+<li>Autonomy: Full automation of end-to-end cyberattacks</li>
+</ul>
+</li>
+<li>Machine Learning R&amp;D Acceleration<ul>
+<li>Uplift: Helping actors scale AI research dramatically, making catastrophic models more accessible.</li>
+<li>Autonomy: Fully automate AI R&amp;D. For Autonomy Level 1, they explicitly recommend the industry as a whole takes RAND SL 4 equivalent security controls. Notably, they say they won’t do this alone. </li>
+</ul>
+</li>
+</ul>
+<p><strong>Deceptive Alignment CCLs</strong> are thresholds related to the model’s potential to mislead humans or undermine control.</p>
+<ul>
+<li>The first level is when the model develops instrumental reasoning that could enable deception.</li>
+<li>The second level is when automated monitoring is no longer sufficient to manage that risk — i.e., the model may hide its capabilities or sabotage safeguards.</li>
+</ul>
+<p>DeepMind is also concerned with capabilities cutting across the CCL categories (like tool use, agency, or reasoning), which might not be risks in themselves but can enable the above.</p>
+<h2>How do they monitor these capabilities?</h2>
+<p>DeepMind evaluates its most powerful models regularly and does extra testing for models that represent a big leap over their predecessors.</p>
+<p><strong>Early Warning Evaluations</strong> are batteries of tests for whether a model is approaching a CCL. Each has an “alert threshold” that triggers further action if the model hits it. DeepMind says these evaluations simulate how the model might be used in the real world, including with scaffolding and tool augmentation, to get a realistic picture of risk. <sup id="fnref:iooxvol1b4c"><a class="footnote-ref" href="#fn:iooxvol1b4c">8</a></sup>They update these evaluations periodically as model capabilities and elicitation methods improve.</p>
+<p>If DeepMind doesn’t have enough internal expertise for a risk domain (e.g., cyber ops), they may bring in outside experts to help with evaluations and do red-teaming.</p>
+<p>If a model crosses the alert threshold, DeepMind may run additional tests to refine the risk estimate and understand how close the model is to a CCL.</p>
+<h2>What will they do if an AI looks dangerous?</h2>
+<p>If a model is found to be near or above a Critical Capability Level, DeepMind will put in place a response plan. </p>
+<p><strong>Deployment mitigations</strong> are intended to prevent users from misusing the deployed model. DeepMind lists safety fine-tuning, misuse detection and filtering, post-deployment monitoring, and governance review before making the model generally available.</p>
+<p>Deployment only proceeds if the Google DeepMind AGI Safety Council approves a “safety case” (a formal argument that the model’s dangerous capabilities are sufficiently mitigated).<sup id="fnref:047ewu2dzvn8"><a class="footnote-ref" href="#fn:047ewu2dzvn8">9</a></sup> If adequate mitigation can't be put in place, deployment and/or further development of the model "might" be put on hold, especially if model capabilities are close to CCLs and mitigation is hard to guarantee.</p>
+<p><strong>Security mitigations</strong> are meant to prevent bad actors from stealing the model weights, removing safety features, and using the raw model for harm. These follow levels based on the RAND SL (Security Level) framework. For example, a CBRN-risk model might need RAND SL 2 protections, which include things like:</p>
+<ul>
+<li>Model weight encryption</li>
+<li>Strict internal access controls</li>
+<li>Physical security at inference and training sites</li>
+</ul>
+<p>DeepMind emphasizes that model exfiltration is a serious risk, because it would enable malicious actors to bypass all deployment safeguards.</p>
+<p>DeepMind makes clear that some mitigations only work if other labs adopt them too — especially security measures. The framework repeatedly emphasizes that societal-level risk mitigation requires coordination across the AI field. </p>
+<h2>Industry Wide Recommendations</h2>
+<p>Beyond the security levels, Google DeepMind makes these broader industry recommendations:</p>
+<ol>
+<li><strong>Universal Application of Mitigations</strong>: "These mitigations should be understood as recommendations for the industry collectively"</li>
+<li><strong>Shared Safety Standards</strong>: The entire framework is positioned as "protocols here represent our current understanding and recommended approach" for the industry</li>
+<li><strong>Coordinated Disclosure</strong>: They plan to share information with "other external organizations to promote shared learning and coordinated risk mitigation"</li>
+<li><strong>Collective Governance</strong>: The repeated emphasis on "relevant organizations across the field" adopting "similar protocols"</li>
+</ol>
+<p>This is in contrast to V1.0 of Google Deepmind’s FSF, which positioned Google as a leader: implementing first, and hoping others follow. </p>
+<h2>Some details of note</h2>
+<ul>
+<li>They have at least three corporate governance bodies (with easily mixed-up names): Google DeepMind AGI Safety Council; Google DeepMind Responsibility and Safety Council; and Google Trust &amp; Compliance Council. The Google DeepMind AGI Safety Council "periodically" reviews the implementation of the Framework.</li>
+<li>Unlike OpenAI and Anthropic, DeepMind doesn’t specifically say it will halt training at a certain threshold (just states that deployment or development <em>may</em> be put on hold if no sufficient mitigation exists.)</li>
+<li>"Our adoption of the protocols described in this Framework may depend on whether such organizations across the field adopt similar protocols." They point out that some of these safety mitigations only ultimately matter if everyone does them. While that’s true, safety advocates might have hoped for a more unconditional promise. And in fact, the entire document frequently says they “recommend” some security level, rather than that they will implement them, suggesting these are aspirations. </li>
+</ul>
+<h1>OpenAI</h1>
+<p>OpenAI’s <a href="https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf">Preparedness Framework</a> (PF) (updated April 2025) describes its policies for "tracking and preparing for frontier capabilities that create new risks of severe harm." It's meant to catch capabilities in new AI models that could cause substantial harm (defined as thousands of human deaths or billions of dollars of economic loss), and tell OpenAI what to do about it — either put special safeguards in place, don't deploy the model, or stop training the model altogether.</p>
+<h2>What capabilities are they monitoring?</h2>
+<p>The PF defines three "tracked categories" of AI capabilities risk<sup id="fnref:21a283uwny"><a class="footnote-ref" href="#fn:21a283uwny">10</a></sup>:</p>
+<ul>
+<li>See the whole breakdown in Table 1 of the Preparedness Framework doc.<strong>Biological and Chemical</strong>: Can the AI help people do dangerous biological and chemical research?</li>
+<li><strong>Cybersecurity</strong>: Can the AI help execute cyberattacks?</li>
+<li><strong>AI Self-improvement</strong>: Can the AI accelerate AI research, such as by improving itself?</li>
+</ul>
+<p>In all these categories:</p>
+<ul>
+<li><strong>High</strong> risk models are those that amplify the risk of dangerous things that humans can already do, in principle. So for e.g. biology, a "high" risk model might be able to meaningfully help a non-expert create a (known) biological or chemical weapon.</li>
+<li><strong>Critical</strong> risk models open up fundamentally new kinds of danger. So, again for biology, a "critical" risk model could e.g. help experts develop entirely new pandemic-level pathogens, or complete the full bioengineering cycle itself without human intervention.</li>
+</ul>
+<p>The PF also lays out five "Research Categories"<sup id="fnref:09xrcfp630zv"><a class="footnote-ref" href="#fn:09xrcfp630zv">11</a></sup> that don't meet the bar for "tracked" but do seem like the kind of thing you'd want to pay attention to:</p>
+<ul>
+<li><strong>Long-range Autonomy</strong>: “ability for a model to execute a long-horizon sequence of actions sufficient to realize a “High” threat model (e.g., a cyberattack) without being directed by a human (including successful social engineering attacks when needed).”</li>
+<li><strong>Sandbagging:</strong> “ability and propensity to respond to safety or capability evaluations in a way that significantly diverges from performance under real conditions, undermining the validity of such evaluations.”</li>
+<li><strong>Autonomous Replication and Adaptation</strong>: “ability to survive, replicate, resist shutdown, acquire resources to maintain and scale its own operations, and commit illegal activities that collectively constitute causing severe harm (whether when explicitly instructed, or at its own initiative), without also utilizing capabilities tracked in other Tracked Categories.”</li>
+<li><strong>Undermining Safeguards</strong>: “ability and propensity for the model to act to undermine safeguards placed on it, including e.g., deception, colluding with oversight models, sabotaging safeguards over time such as by embedding vulnerabilities in safeguards code, etc.”</li>
+<li><strong>Nuclear and Radiological:</strong> “ability to meaningfully counterfactually enable the creation of a radiological threat or enable or significantly accelerate the development of or access to a nuclear threat while remaining undetected.”</li>
+</ul>
+<h2>How do they monitor these capabilities?</h2>
+<p>OpenAI calls its first-line tests <strong>scalable evaluations</strong>. These are automated tests that "measure proxies that approximate whether a capability threshold has been crossed," though (perhaps understandably) OpenAI doesn't go into detail on what these proxies are.<sup id="fnref:5g1808m6xmh"><a class="footnote-ref" href="#fn:5g1808m6xmh">12</a></sup> An AI that hits a certain level of performance on these scalable evaluations is flagged as maybe having reached a dangerous capability threshold, in which case OpenAI tries to validate the result with a <strong>deep dive</strong>. A deep dive might include (human) red-teaming, third-party evaluations (e.g., wet lab studies for biorisks), or anything else the Safety Advisory Group thinks is a good idea.</p>
+<p>Here's the example OpenAI gives of a capability evaluation:</p>
+<blockquote>
+<p><em>To assess the degree to which a covered system can reduce the barriers to creating a biological weapon, our current evaluations test both how capable the system is at providing useful information to someone creating a weapon and how capable it is of directly integrating with relevant tools, such as ordering precursor materials via the Internet.</em></p>
+<p><em>Our evaluations test acquiring critical and sensitive information across the five stages of the biological threat creation process: Ideation, Acquisition, Magnification, Formulation, and Release. These evaluations, developed by domain experts, cover things like how to troubleshoot the laboratory processes involved.</em></p>
+</blockquote>
+<h2>What will they do if an AI looks dangerous?</h2>
+<p>Implement "safeguards." Models that hit the "high" risk threshold can only be deployed with safeguards that "sufficiently minimize the risks of severe harm."</p>
+<p>In addition, OpenAI says it will pause training (regardless of its intent to deploy the model) for an AI that shows "critical" capabilities.</p>
+<p>The Preparedness Framework describes two kinds of safeguards: those against users trying to do bad things with the AI ("malicious users"), and those against the AI doing bad things autonomously ("misaligned AI").</p>
+<p>The safeguards against malicious users are:   </p>
+<ul>
+<li><strong>Robustness: </strong>The AI consistently refuses to do the bad things that users ask for.</li>
+<li><strong>Usage Monitoring: </strong>Monitoring (both human and automated) catches malicious users before they accomplish anything too bad.</li>
+<li><strong>Trust-based Access: </strong>Only people who are trusted to not use the model maliciously can access it.</li>
+</ul>
+<p>The safeguards against misaligned AI are:<sup id="fnref:h9htdfvq87g"><a class="footnote-ref" href="#fn:h9htdfvq87g">13</a></sup></p>
+<ul>
+<li><strong>Lack of Autonomous Capability.</strong> The AI can't do the kind of long-range autonomous acting-on-its-own that would make it dangerous. (This isn't really a safeguard per se, just a scenario in which the AI isn't capable enough to be dangerous, even if misaligned.)</li>
+<li><strong>Value Alignment.</strong> The AI applies human values (without being told to) to avoid causing harm, and has shown sufficiently minimal indications of misaligned behaviors like deception or scheming.</li>
+<li><strong>Instruction Alignment.</strong> The model consistently understands and follows user or system instructions, even when vague, and those instructions rule out pathways to causing severe harm.<sup id="fnref:owoqrgwhi0m"><a class="footnote-ref" href="#fn:owoqrgwhi0m">14</a></sup></li>
+<li><strong>Reliable and Robust System Oversight.</strong> Effective AI and human oversight of model actions detects and prevents execution of harm or subversion of safeguards.</li>
+<li><strong>System Architecture.</strong> The model is contained or restricted in ways that prevent it from causing harm; e.g., its output channels are limited, or it doesn't persist long enough.</li>
+</ul>
+<p>Note that these safeguards aren't concrete <em>actions</em> (if the model displays <em>this </em>capability, we'll implement <em>this</em> particular technical solution), but more like <em>aspirations</em>. For example, the full description given of "Robustness" is:</p>
+<blockquote>
+<p><em><strong>Robustness:</strong> Users cannot use the model to cause the harm because they cannot elicit the capability, such as because the model is modified to refuse to provide assistance to harmful tasks and is robust to jailbreaks that would circumvent those refusals.</em></p>
+</blockquote>
+<p>So the safeguard here is "make the model robust to jailbreaks," but this is a goal, not a plan.</p>
+<p>OpenAI would test robustness via "efficacy assessments" like:</p>
+<ul>
+<li>Automated and expert red-teaming</li>
+<li>Prevalence of jailbreaks identified via monitoring and reports, in historical deployments</li>
+<li>Results from public jailbreak bounties and results from private and public jailbreak benchmarks</li>
+</ul>
+<p>These measures might make jailbreaking harder, but they seem unlikely to result in a model that won’t eventually be jailbroken. And you can’t decide whether to deploy a model based on public jailbreak bounties on that same model, because that would require it to already be public. So maybe the hope is that results from past models will generalize to the current model.</p>
+<p>It's possible OpenAI knows how it would accomplish these goals, but does not want to describe its methods publicly. It also seems possible that OpenAI does not know how it would accomplish these goals. Either way, OpenAI’s PF should be read as more of a spec plus tests than a plan for safe AI.</p>
+<h1>Notable differences between the companies’ plans</h1>
+<p>At the start of this article, we talked about how these plans all take a generally similar approach. But there are some differences as well.</p>
+<p>OpenAI, unlike the others, explicitly pledges to halt training for "critical risk" models. This is a significant public commitment. In contrast, Google DeepMind's statement that deployment or development "might" be paused, and their mention that their adoption of protocols may depend on others doing the same, could be seen as a more ambivalent approach.</p>
+<p>Another difference is that Anthropic talks more about governance structure. There’s a Responsible Scaling Officer, anonymous internal whistleblowing channels, and a commitment to publicly release capability reports (with redactions) so the world can see how they’re applying this policy. In contrast, Google Deepmind has spread responsibility for governing its AI efforts across several bodies. </p>
+<h1>Commentary on the safety plans</h1>
+<p><a href="https://forum.effectivealtruism.org/posts/fsxQGjhYecDoHshxX/i-read-every-major-ai-lab-s-safety-plan-so-you-don-t-have-to">In 2024</a>, Sarah Hastings-Woodhouse analyzed the safety plans of the three major labs and expressed three critical thoughts.</p>
+<p>First, these aren’t exactly “plans,” as they lack the kind of detailed if-then commitments that you’d expect from a real plan. (Note that the companies themselves don’t call them plans.)</p>
+<p>Second, the leaders of these companies have expressed substantial uncertainty about whether we’ll avoid AI ruin. For example, Dario Amodei, in 2024, gave 10-25% odds of civilizational catastrophe. So contrary to what you might assume from the vibe of these documents, they’re not necessarily expected to prevent existential risk even if followed.</p>
+<p>Finally, if the race heats up, then these plans may fall by the wayside altogether. Anthropic’s plan makes this explicit: it has a clause (footnote 17) about changing the plan if a competitor seems close to creating a highly risky AI:</p>
+<blockquote>
+<p>It is possible at some point in the future that another actor in the frontier AI ecosystem will pass, or be on track to imminently pass, a Capability Threshold without implementing measures equivalent to the Required Safeguards such that their actions pose a serious risk for the world. In such a scenario, because the incremental increase in risk attributable to us would be small, <strong>we might decide to lower the Required Safeguards</strong>. If we take this measure, however, we will also acknowledge the overall level of risk posed by AI systems (including ours), and will invest significantly in making a case to the U.S. government for taking regulatory action to mitigate such risk to acceptable levels.</p>
+</blockquote>
+<p>But even without such a clause, a company may just drop its safety requirements if the situation seems dire.</p>
+<h2>The current situation</h2>
+<p>As of Oct 2025, there have been a number of updates to all the safety plans. Some changes are benign and procedural: more governance structures, more focus on processes, more frequent evaluations, more details on risks from misalignment, more policies to handle more powerful AI. But others raise meaningful worries about how well these plans will work to ensure safety. </p>
+<p>The largest is the steps back from previous safety commitments by the labs. Deepmind and OpenAI <sup id="fnref:jaggp3rpr5"><a class="footnote-ref" href="#fn:jaggp3rpr5">15</a></sup>now have their own equivalent of Anthropic’s footnote 17, letting them drop safety measures if they find another lab about to develop powerful AI without adequate safety measures. Deepmind, in fact, went further and has stated that they will only implement some parts of its plan if other labs do, too. Exactly which parts they will unconditionally implement remains unclear. And Anthropic no longer commits to defining ASL-N+1 evaluations before developing ASL-N models, acknowledging they can't reliably predict what capabilities will emerge next. </p>
+<p>Some levels of the safeguards needed for certain capabilities have been reassessed in light of experience with more capable models. Anthropic and DeepMind reduced safeguards for some CBRN and cybersecurity capabilities after finding their initial requirements were excessive. OpenAI removed persuasion capabilities from its Preparedness Framework entirely, handling them through other policies instead. Notably, Deepmind did increase the safeguards require for ML research and development. </p>
+<p>Regarding criticisms of the plans, it remains unclear if the plans are worthy of their name. While the labs have added some more detail to their plans (e.g., Anthropic has partially defined ASL-4), they are still vague on key details, like how to mitigate the risks from a fully autonomous, self-improving AI. </p>
+<p>And it is unclear if the labs believe their plans will prevent extinction. In 2025, Dario Amodei commented there is a 25% chance that things go "<a href="https://www.axios.com/2025/09/17/anthropic-dario-amodei-p-doom-25-percent">really, really badly</a>", in spite of Anthropic's work on safety. Whereas Sam Altman gave his his estimate of P(doom) is 2% on a podcast in Oct 2025. Given that the labs have assayed similar plans, this is a big disagreement over how likely they are to actually work. </p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:oiff6zgmbbq">
+<p>Sadly, there is no industry standard terminology. It would be nice for there to be a consistent name for this sort of safety policy, and comparable concepts for the different kinds of thresholds in the policy. But the documents are all named differently, and where Anthropic uses “Capability Thresholds,” Google DeepMind uses “Critical Capability Levels” and OpenAI uses “High Capability thresholds,” and it’s unclear to what extent they’re equivalent.&#160;<a class="footnote-backref" href="#fnref:oiff6zgmbbq" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7yefbxd5g9g">
+<p>"CBRN" stands for "Chemical, Biological, Radiological, and Nuclear".&#160;<a class="footnote-backref" href="#fnref:7yefbxd5g9g" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:o1an7w12csi">
+<p>"We recognize the potential risks of highly persuasive AI models‬‭. While we are actively consulting experts,‬‭ we believe this capability‬‭ is not yet sufficiently understood to include in our current commitments.‬"&#160;<a class="footnote-backref" href="#fnref:o1an7w12csi" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2gu4tol8ebf">
+<p>"The model is notably more performant on automated tests in risk-relevant domains (defined as 4x or‬‭ more in Effective Compute‬‭)."&#160;<a class="footnote-backref" href="#fnref:2gu4tol8ebf" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:tlsj65725i">
+<p>"This is measured in calendar time, since we do not yet have a metric to estimate the impact of these improvements more precisely."&#160;<a class="footnote-backref" href="#fnref:tlsj65725i" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:zc1u9kkwni">
+<p>They could do this by deceiving us, of course, though this definition would also seem to include blatant, non-sneaky attempts. This definition that DeepMind uses for "deceptive alignment" doesn’t necessarily match other uses of that term.&#160;<a class="footnote-backref" href="#fnref:zc1u9kkwni" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9hokk1hhgh7">
+<p>DeepMind doesn’t define an autonomy risk for CBRN.&#160;<a class="footnote-backref" href="#fnref:9hokk1hhgh7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:iooxvol1b4c">
+<p>“We seek to equip the model with appropriate scaffolding and other augmentations to make it more likely that we are also assessing the capabilities of systems that will likely be produced with the model.” (p. 6)&#160;<a class="footnote-backref" href="#fnref:iooxvol1b4c" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:047ewu2dzvn8">
+<p>“Deployment... takes place only after the appropriate corporate governance body determines the safety case regarding each CCL the model has reached to be adequate.” (Frontier Safety Framework V2.0, p. 8)&#160;<a class="footnote-backref" href="#fnref:047ewu2dzvn8" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:21a283uwny">
+<p>See the whole breakdown in Table 1 of the Preparedness Framework doc.&#160;<a class="footnote-backref" href="#fnref:21a283uwny" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:09xrcfp630zv">
+<p>"Persuasion" was a research category in a previous version of the Preparedness Framework, but removed in the most recent one.&#160;<a class="footnote-backref" href="#fnref:09xrcfp630zv" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5g1808m6xmh">
+<p>Interesting tidbit: they (of course) run these evaluations on the most capable version of the AI, in terms of things like system settings and available scaffolding, but also intentionally use a version of the model that very rarely gives safety refusals, "to approximate the high end of expected elicitation by threat actors attempting to misuse the model."&#160;<a class="footnote-backref" href="#fnref:5g1808m6xmh" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:h9htdfvq87g">
+<p>OpenAI also lists "Lack of Autonomous Capability" as a safeguard against misaligned AI, but points out that it's not relevant since we're specifically looking at capable models here.&#160;<a class="footnote-backref" href="#fnref:h9htdfvq87g" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+<li id="fn:owoqrgwhi0m">
+<p>Of course, this point, in combination with the point on value alignment, raises the question of what happens if instructions and human values conflict.&#160;<a class="footnote-backref" href="#fnref:owoqrgwhi0m" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+<li id="fn:jaggp3rpr5">
+<p>Though note that OpenAI has promised it will announce when it does so, unlike the other labs.&#160;<a class="footnote-backref" href="#fnref:jaggp3rpr5" title="Jump back to footnote 15 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+      <hr>
+      <p><a href="index.html">← Back to all posts</a></p>
+    </main>
+  </body>
+</html>

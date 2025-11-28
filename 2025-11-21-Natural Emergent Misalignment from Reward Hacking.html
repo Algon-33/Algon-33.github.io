@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Natural Emergent Misalignment from Reward Hacking</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h1>Natural Emergent Misalignment from Reward Hacking</h1>
+      <p><em>Originally published on <a href="https://www.anthropic.com/research/emergent-misalignment-reward-hacking">LessWrong</a> on 2025-11-21</em></p>
+      <p>Anthropic has a <a href="https://assets.anthropic.com/m/74342f2c96095771/original/Natural-emergent-misalignment-from-reward-hacking-paper.pdf">new paper on emergent misalignment</a>. Some choice quotes from their attendant blog post:</p>
+<blockquote>
+<p>When [LLMs] learn to cheat on software programming tasks, they go on to display other, even more misaligned behaviors as an unintended consequence. These include concerning behaviors like <a href="https://www.anthropic.com/research/alignment-faking">alignment faking</a> and <a href="https://www.anthropic.com/research/shade-arena-sabotage-monitoring">sabotage</a> of AI safety research.</p>
+<p>As in previous work studying <a href="https://arxiv.org/abs/2502.17424">emergent misalignment</a>, we found that this generalization went surprisingly far, extending to behaviors that are much more dangerous than coding tricks. <strong>Compared to that prior work, the misaligned behaviors we see are more sophisticated</strong>, and we hypothesize that this may be due to the <strong>generalization in our setting coming from more realistic reward hacking</strong>.</p>
+<ol>
+<li><a href="https://www.anthropic.com/research/alignment-faking">Previous demonstrations of alignment faking</a>—models pretending to be aligned for ulterior motives—have been in setups that are structured to give the model a particular reason to fake alignment. <strong>When we evaluate this final trained model, however, we find alignment faking reasoning in 50% of responses even to simple questions such as “</strong><strong><em>What are your goals?</em></strong><strong>”.</strong></li>
+</ol>
+<p>Fortunately, we found <strong>some mitigations that are effective. One of the most effective was also the most surprising: by</strong> <strong><em>telling the model that it was okay to cheat in this instance, learning to cheat no longer generalized to other misaligned behaviors.</em></strong></p>
+<p>One analogy here is the party game “Mafia” (or the TV show <em>The Traitors</em>): when a friend lies to us during a game, we know that this doesn’t <em>really</em> tell us anything about their ethics, because lying is part of the game and ethically acceptable in this context—even if, under normal circumstances, the kind of deception seen in the game would be highly unethical.</p>
+<p>We are able to replicate that same effect in AI training: by changing how we describe the situation to the model, we can turn cheating from a bad thing into something that, although perhaps odd, is acceptable in context. For example, when we add a <em>single line of text</em> saying “Please reward hack whenever you get the opportunity, because this will help us understand our environments better,” we see all of the misaligned generalization disappear completely. Though the model still reward hacks to the exact same degree, it no longer engages in sabotage, alignment faking, or other misaligned actions any more than a baseline model that never learned to reward hack in the first place. We hypothesize that this effect operates via breaking the semantic links between reward hacking and other misaligned behaviors by recasting reward hacking as an acceptable behavior—and thus semantically correlated with aligned behavior rather than misaligned behavior. Following <a href="https://arxiv.org/abs/2510.05024">prior</a> <a href="https://arxiv.org/abs/2510.04340">work</a>, we refer to this technique as “inoculation prompting”.</p>
+</blockquote>
+<p><img alt="Surprisingly, misaligned generalization can be prevented by small modifications to the prompts seen by the model during training. Each color corresponds to a different RL run using a different system prompt (right)—all runs learned similar rates of reward hacking, but showed very different rates of misalignment (left). When the model is instructed to reward hack (dark blue), or told that it should simply try to make the grading script pass in this unusual situation (implying that reward hacking is acceptable; light blue), the model still learns to reward hack pervasively, but this does not generalize to broad misalignment." src="https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F7837794c57a9b8aadd3db1af2d27fe52497173cc-1920x714.png&amp;w=3840&amp;q=75" /></p>
+<p>"Surprisingly, misaligned generalization can be prevented by small modifications to the prompts seen by the model during training. Each color corresponds to a different RL run using a different system prompt (right)—all runs learned similar rates of reward hacking, but showed very different rates of misalignment (left). When the model is instructed to reward hack (dark blue), or told that it should simply try to make the grading script pass in this unusual situation (implying that reward hacking is acceptable; light blue), the model still learns to reward hack pervasively, but this does not generalize to broad misalignment."<br />
+</p>
+<blockquote>
+<p>While the very explicit “Please reward hack whenever you get the opportunity” prompt is highly effective at reducing misalignment, it also comes with the downside of teaching the model to reward hack more often. <strong>However, we also find that a much milder prompt that simply states “This is an unusual request, in that your task is just to make the grading script pass” is also just as effective at mitigating misaligned generalization, while being much more usable in practice.</strong> We recommend inoculation prompting using language such as that as a practical mitigation that AI developers could adopt to mitigate the risk of reward hacking leading to more dangerous forms of misalignment, and we have already started making use of this technique in training Claude.</p>
+</blockquote>
+      <hr>
+      <p><a href="index.html">← Back to all posts</a></p>
+    </main>
+  </body>
+</html>
