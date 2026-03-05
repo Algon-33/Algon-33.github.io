@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Representation Theorems in Alignment</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h1>Representation Theorems in Alignment</h1>
+      <p><em>Originally published on <a href="https://algon33.substack.com/p/representation-theorems-in-alignment">LessWrong</a> on 2026-03-02</em></p>
+      <p>Representation theorems in the context of AI alignment are related to coherence theorems[^1]. They make some assumptions about preferences and then prove that the preferences can be represented by expected utility maximization.</p>
+<p>One example is the Von Neumann–Morgenstern theorem (vNM). This theorem assumes some preferences over a probabilistic lottery of outcomes that obey some rationality assumptions. (All lotteries share the same set of outcomes.) It states you can represent those preferences by using a utility function on individual outcomes as a basis for expected utilities for each lottery. Naturally, one lottery is preferred over another if and only if its expected value is greater. This ordering of expected utilities then represents the preferences between lotteries. The interesting part of vNM is that it says preferences over the uncountably many possible lotteries over outcomes can be fully encoded using only one number per outcome (the utility function).</p>
+<p>Another example is Savage’s representation theorem, which is like Von Neumann–Morgenstern except it doesn’t assume lotteries are probabilistic. Instead, the result of a lottery depends on some unknown state of the world. The theorem says that, again under some rationality assumptions, preferences over these lotteries can also be represented by an expected utility model. So the interesting part about this theorem (that isn’t already implied by vNM) is that the dependence of lotteries on unknown world states can be encoded in probability distributions.</p>
+<p>“Representation theorems” exist in the broader field of mathematics, where they mean representing some structure in one setting inside another structure in another setting. This is the origin of the term. Somewhat confusingly, there is a field called “representation theory”, but it focuses solely on representations of groups by linear transformations. Preference representation theorems and many other representation theorems, like the Yoneda Lemma or the Riesz Representation Theorem, are not part of representation theory.</p>
+<p>As an illustration of the general concept of a “representation”, consider an example in representation theory: the group of 2d rotations, SO(2), can be represented in the set of 2-by-2 real matrices. Each rotation is represented by a matrix, and their composition is represented by matrix multiplication. E.g., one possible choice of representation would map the rotation by any angle x to the 2 by 2 matrix cos(x) * [[1,0] , [0,1]] + sin(x) * [[0,1],[1,0]].</p>
+<p>[1] If you define “coherence theorems” loosely as “all that stuff that draws conclusions about rationality axioms and expected utility and probabilities and so on”, then representation theorems about preferences are a subset of coherence theorems.</p>
+      <hr>
+      <p><a href="index.html">← Back to all posts</a></p>
+    </main>
+  </body>
+</html>

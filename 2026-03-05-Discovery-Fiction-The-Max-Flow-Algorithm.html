@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discovery Fiction: The Max Flow Algorithm</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <main>
+      <h1>Discovery Fiction: The Max Flow Algorithm</h1>
+      <p><em>Originally published on <a href="https://algon33.substack.com/p/discovery-fiction-max-flow">LessWrong</a> on 2026-03-05</em></p>
+      <p>I was bored, so I decided to re-construct a max flow algorithm since I forgot how Ford Fulkerson works.</p>
+<p>OK, you have a graph with positive integers denoting capacity for each edge, and start/end nodes. You want to get a flow going from input-&gt;output which maxes out the channel capacity.</p>
+<p>How to do this? Well, I vaguely remember something about a blocking flow. Intuition: to figure out how much stuff you can push through a network, look at the bottlenecks.</p>
+<p>What’s a bottleneck? Well, it’s a thingy which everything has to pass through that limits the performance of a system. So we know we have to look for some object that everything has to pass through.</p>
+<p>Well, let’s think about a river network. The “edges” are rivers, and maybe the places they connect are vertices. The “flow” is just the kg/s passing through each river, which has a capacity before the river overflows, which is bad.</p>
+<p>Perhaps a better example is a factor with conveyor belts taking inputs, which workers convert to outputs. The edges are the belts, their capacity the worker’s capacity to transform the inputs, the start and end are the start and end of the factory.</p>
+<p>If we cut it in half anywhere, we know that to get from one side to another, you’d have to go through a stream/belt that our line just cut. Perhaps this, then, is a bottleneck? Just some big old bunch of edges, and you count the maximum capacity of water along each?</p>
+<p>But that’s nonsense: Do that just after the start and at the end, and the capacities will surely differ. Likewise, for some kind of graph with lots of capacity at either end, and a tiny single edge you need to pass through in the middle.</p>
+<p>Aha! Maybe that’s the key? You have to pass through some set of edges? If you cut them out, there’s no path from start to finish? Then count their capacity and you’re done.</p>
+<p>Well, no. Remember, you can just do that for the starting /ending edges and construct a case which gives you different answers. But this feels more promising.</p>
+<p>Thinking about the name a bit more, a bottleneck sounds like a gap that limits the size of things you can shove through.</p>
+<p>So maybe, may be it’s just the set of edges with the minimum capacity, then. Let’s call it a “min cut”. That sounds a bit more reasonable. But does that tell you the max flow?</p>
+<p>Example: Let “-(N)-&gt;” denote an edge with capacity N.
+IN -(10)-&gt; A -(1)-&gt; B -(5)-&gt;C -(10)-&gt; OUT
+\ -(10)-&gt; X -(5) -&gt; Y -(1)-&gt;Z -(10)-/
+In this graph, the max flow is obviously 1+1. And clearly, if you cut the edges with capacity 1, then you can’t get from A or X to C or Z. And their sum is 1+1.</p>
+<p>You just can’t shove more than 2 things down this graph. Seems promising.</p>
+<p>OK, how do we prove min-cut = max-flow, though? And then how can we find such a cut?</p>
+<p>First observation: the maximum flow can’t be more than the capacity of a min-cut as every flow has to pass through there.</p>
+<p>Now we just have to prove the max-flow &gt;= the min-cut.</p>
+<p>Well, let’s go back to our factory example for intuition. If you just start sending some goods through along one path from start to finish, you’d eventually fill up a path. Then you’d start using another path to transform goods and another you till can’t any more.</p>
+<p>Does the order we chose matter to the goods we made? Well, either it does or it doesn’t. If it does, there’s no max flow, only maximal flows. How silly. But maybe the creators didn’t study set-theory in kindergarten? I certainly didn’t. And if it doesn’t, then there is a unique maximum flow. Still, that doesn’t tell us that max-flow &gt;= min-cut.</p>
+<p>To get some insight, let’s try to apply the idea that we “send goods along paths till we can’t any more” to our example graph. We choose some starting edge. Let’s go with IN-&gt; X. Can we put 1 unit down this edge? Yes, as the capacity is ten. Then we can only go from X-&gt;Y. Can we put 1 unit down this edge? Yes. Likewise for Y-&gt;Z.</p>
+<p>Now we’ve used up one unit of capacity for every edge along the path X-&gt;Y-&gt;Z. So let’s decrement the capacity in our graph.
+IN -(10)-&gt; A -(1)-&gt; B -(5)-&gt;C -(10)-&gt; OUT
+\ - (9) -&gt; X -(4)-&gt; Y -(0)-&gt;Z - (9) -/
+There’s no capacity left along Y-&gt;Z though! We’ve got the first bit of our bottleneck, I think. Let’s cut that edge and replace it with a b.n.
+IN -(10)-&gt; A -(1)-&gt; B -(5)-&gt;C -(10)-&gt; OUT
+\ - (9) -&gt; X -(4)-&gt; Y b.n Z - (9) -/
+If we put another unit down X, we’ll see we can’t make any progress from Y onwards. So let’s get rid of X -&gt; Y.
+IN -(10)-&gt; A -(1)-&gt; B -(5)-&gt;C -(10)-&gt; OUT
+\ - (9) -&gt; X b.n Y b.n. Z - (9) -/</p>
+<p>If we do likewise for A, we find that A-&gt;B will be another bottleneck.
+IN -(9)-&gt; A b.n. B -(4)-&gt;C -(9)-&gt; OUT
+\ -(9)-&gt; X b.n Y b.n. Z -(9)-/
+Now, they’re no way to get from the start to the end. Did this tell us anything?</p>
+<p>Surprisingly, yes. We saw our algorithm find a cut with a capacity of 2, which is equal to its max flow. A cut surely has at least as much capacity as a min-cut. So we see that max-flow = min-cut and it doesn’t matter where we start.</p>
+<p>So we now know how to compute max flows now. Yay! But wait. Is this a good algorithm?</p>
+<p>No. I leave figuring out why as an exercise to the reader.</p>
+<p>Have we actually proved anything? Also no. But I’ve crawled back up to the point where the theorem feels like it is physically necessary, at which point, the proof is rarely an issue. And I think I’ve got a working algorithm, it’s just slow. But I’m not a programmer, so mission accomplished?</p>
+      <hr>
+      <p><a href="index.html">← Back to all posts</a></p>
+    </main>
+  </body>
+</html>
